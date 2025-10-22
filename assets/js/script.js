@@ -1,9 +1,20 @@
-// Dark / Light mode toggle
+// Dark / Light mode toggle with default dark and saving preference
 const themeToggle = document.getElementById('theme-toggle');
 const root = document.documentElement;
+
+// Check localStorage or set default dark
+const savedTheme = localStorage.getItem('theme');
+if(savedTheme) {
+  root.setAttribute('data-theme', savedTheme);
+} else {
+  root.setAttribute('data-theme', 'dark'); // default dark mode
+}
+
+// Toggle button
 themeToggle.addEventListener('click', () => {
   const theme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   root.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme); // save user choice
 });
 
 // Typing Animation
@@ -38,30 +49,40 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Netlify AJAX form submit
+
+// Netlify AJAX Form Submission
 const form = document.querySelector('.contact-form');
 const successMsg = document.getElementById('form-success');
 const errorMsg = document.getElementById('form-error');
 
-if(form){
-  form.addEventListener('submit', function(e){
-    e.preventDefault(); // prevent default form submit
-    const data = new FormData(form);
+// Ensure messages are hidden on page load
+if (successMsg) successMsg.style.display = 'none';
+if (errorMsg) errorMsg.style.display = 'none';
 
-    fetch('/', {
-      method: 'POST',
-      body: data,
-    }).then(response => {
-      if(response.ok){
-        successMsg.style.display = 'block';
-        errorMsg.style.display = 'none';
+if (form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();  // prevent page reload
+
+    const formData = new FormData(form);
+    const encodedData = new URLSearchParams(formData).toString();
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encodedData
+    })
+    .then(response => {
+      if (response.ok) {
+        successMsg.style.display = "block";  // show success
+        errorMsg.style.display = "none";     // hide error
         form.reset();
       } else {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
-    }).catch(() => {
-      errorMsg.style.display = 'block';
-      successMsg.style.display = 'none';
+    })
+    .catch(() => {
+      errorMsg.style.display = "block";     // show error
+      successMsg.style.display = "none";    // hide success
     });
   });
 }

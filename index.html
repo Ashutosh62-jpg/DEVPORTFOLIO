@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="hero-image" aria-hidden="true">
-        <img src="assets/images/profile.jpg" alt="Ashutosh profile picture">
+       <img src="assets\images\logo.jpg" alt="Ashutosh Kumar">
       </div>
     </section>
 
@@ -101,42 +101,38 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="contact container">
-      <h2>Contact</h2>
-      <p>If you want to work together — send a message.</p>
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
-  <input type="hidden" name="form-name" value="contact" />
-  <p class="hidden">
-    <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-  </p>
+<section id="contact" class="contact container">
+  <h2>Contact Me</h2>
+  <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+    <input type="hidden" name="form-name" value="contact" />
+    <p class="hidden">
+      <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+    </p>
 
-  <label>
-    <span>Name</span>
-    <input type="text" name="name" required placeholder="Your name" />
-  </label>
-  <label>
-    <span>Email</span>
-    <input type="email" name="email" required placeholder="you@example.com" />
-  </label>
-  <label>
-    <span>Message</span>
-    <textarea name="message" rows="5" required placeholder="Tell me about your project"></textarea>
-  </label>
+    <label>
+      <span>Name</span>
+      <input type="text" name="name" required placeholder="Your Name" />
+    </label>
 
-  <button type="submit" class="btn primary">Send Message</button>
+    <label>
+      <span>Email</span>
+      <input type="email" name="email" required placeholder="you@example.com" />
+    </label>
 
-  <!-- Feedback message -->
-  <div id="form-success" class="form-feedback" style="display:none;color:green;margin-top:0.5rem;">
-    ✅ Thanks! Your message has been sent.
-  </div>
-  <div id="form-error" class="form-feedback" style="display:none;color:red;margin-top:0.5rem;">
-    ❌ Oops! Something went wrong.
-  </div>
-</form>
+    <label>
+      <span>Message</span>
+      <textarea name="message" rows="5" required placeholder="Your message"></textarea>
+    </label>
 
-      </form>
-    </section>
-  </main>
+    <button type="submit" class="btn primary">Send Message</button>
+
+    <div id="form-success" class="form-feedback">✅ Thanks! Your message has been sent.</div>
+    <div id="form-error" class="form-feedback">❌ Oops! Something went wrong.</div>
+  </form>
+</section>
+
+
+ </main>
 
   <!-- Footer -->
   <footer class="site-footer">
